@@ -23,13 +23,17 @@ public class CelAnimationSequenceMultiRow
     /// <summary>
     /// Constructs a new CelAnimationSequence.
     /// </summary>        
-    public CelAnimationSequenceMultiRow(Texture2D texture, int celWidth, float celTime)
+    public CelAnimationSequenceMultiRow(Texture2D texture, int celWidth, int celHeight, float celTime, int rowToAnimate)
     {
         this.texture = texture;
         this.celWidth = celWidth;
         this.celTime = celTime;
-
-        celHeight = Texture.Height;
+        this.celHeight = celHeight;
+        this.rowToAnimate = rowToAnimate;
+        //SITUATION: ONE ANIMATION, MULTIPLE ROWS
+        // celCountColumn = Texture.Width / celWidth;
+        // celCountRow = Texture.Height / celHeight;
+        //SITUATION: MULTIPLE ROWS, ONE ANIMATION PER ROW
         celCount = Texture.Width / celWidth;
 
     }

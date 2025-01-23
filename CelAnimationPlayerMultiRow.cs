@@ -32,7 +32,7 @@ public class CelAnimationPlayerMultiRow
             celTimeElapsed = 0.0f;
 
             celSourceRectangle.X = 0;
-            celSourceRectangle.Y = 0;
+            celSourceRectangle.Y = celAnimationSequenceMultiRow.CelHeight * celAnimationSequenceMultiRow.RowToAnimate;
             celSourceRectangle.Width = this.celAnimationSequenceMultiRow.CelWidth;
             celSourceRectangle.Height = this.celAnimationSequenceMultiRow.CelHeight;
         }
