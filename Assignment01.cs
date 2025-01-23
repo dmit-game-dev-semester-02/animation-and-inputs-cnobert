@@ -14,6 +14,9 @@ public class Assignment01 : Game
     private CelAnimationSequence _sequence01, _sequence02;
     private CelAnimationPlayer _animation01, _animation02;
 
+    private CelAnimationSequenceMultiRow _multiRowAnimationSequence;
+    private CelAnimationPlayerMultiRow _multiRowAnimationPlayer;
+
     private KeyboardState _kbPreviousState;
     public Assignment01()
     {
@@ -32,8 +35,24 @@ public class Assignment01 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        //a multi-row sprite sheet with one animation
+        
+        
+        Texture2D spriteSheet = Content.Load<Texture2D>("WalkingMultiRow");
+        #region SITUATION: ONE ANIMATION, MULTIPLE ROWS
+        //step 01, alter the constructor below to that it accepts a height     
+        _multiRowAnimationSequence = new CelAnimationSequenceMultiRow(spriteSheet, 120, 120, 1 / 8.0f);
+        _multiRowAnimationPlayer = new CelAnimationPlayerMultiRow();
+        //step 02, alter the Play method so that it loops over columns AND rows
+        _multiRowAnimationPlayer.Play(_multiRowAnimationSequence);
+        #endregion
+        
+        #region SITUATION: MULTIPLE ROWS, ONE ANIMATION PER ROW
+        _multiRowAnimationSequence = new CelAnimationSequenceMultiRow(spriteSheet, 120, 120, 1 / 8.0f, 1);
+        _multiRowAnimationPlayer = new CelAnimationPlayerMultiRow();
+        _multiRowAnimationPlayer.Play(_multiRowAnimationSequence);
+        #endregion
 
-        // TODO: use this.Content to load your game content here
     }
 
     protected override void Update(GameTime gameTime)
